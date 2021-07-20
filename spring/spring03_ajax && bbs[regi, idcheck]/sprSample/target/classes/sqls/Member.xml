@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="Member">
+
+	<!-- 들어오는 값 : parameterType -->
+	<select id="checkid" parameterType="String" resultType="Integer">
+		SELECT NVL(COUNT(*), 0)
+		FROM MEMBER 
+		WHERE ID = #{ id }
+	</select>
+	
+	<insert id="addMember" parameterType="bit.com.a.dto.MemberDto">
+		INSERT INTO MEMBER
+		VALUES( #{id}, #{pwd}, #{name}, #{email}, 3)
+	</insert>
+
+</mapper>  
