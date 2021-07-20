@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<!-- onload
+<body onload="checkMessage()">
+
+onload 기본적인 함수 호출, 초기화되야하는 경우 등등
+<p id='p1'> </p>
+
+<script type="text/javascript">
+function checkMessage() {
+	document.getElementById('p1').innerHTML = 'checkMessage() 호출';
+}
+</script>
+ -->
+ 
+ 
+ <body onload="viewScroll()">
+ 
+ <pre> 
+ [마이데일리 = 양유진 기자] SBS 아나운서 출신 방송인 장예원이 '여자 전현무'라는 수식어에 발끈했다.
+6일 오후 방송된 KBS 2TV '사장님 귀는 당나귀 귀'(이하 '당나귀 귀')에서는 가수 토니안, 스포츠트레이너 양치승, 음악감독 김문정 보스의 일터가 공개됐다.
+스페셜 MC로 출연한 장예원은 "사실 토니안이 오는지 몰랐다. 김문정 감독 때문에 바로 오겠다고 했다. 
+최근에 '그레이트 코멧'도 보고 왔다"라고 말했다.
+장예원이 "항간에 '여자 전현무'라는 이야기가 있다"는 MC 김숙의 말에 "불쾌하다"라고 하자, 옆에서 지켜보던 MC 전현무는 "나는 이렇게 뻥을 많이 치지 않는다. 
+나는 진실을 부풀리는 거고 장예원은 없는 이야기를 지어내는 거다"라고 주장했다. 이에 장예원은 "저는 진실을 이야기하는 거다"라고 응수했다.
+[사진 = KBS 2TV 방송 화면]
+ </pre>
+ 
+ <script type="text/javascript">
+ let posY = 0;
+ 
+ function viewScroll() {
+	window.scroll(0, posY);
+	
+	posY += 2;
+	if(posY == 300) posY = 0;
+	
+	setTimeout("viewScroll()",100);
+	
+}
+ </script> 
+ <body>
+ 	<!-- 
+ 	onblur : 포커스를 이동 
+ 	
+ 	예를들어서
+ 	text 잘못 기입시, 포커스가 이동이 된다고 하면 유효한 값이 아닙니다
+ 	-->
+나이:<input type="text" onblur="isRegNum()" size="10" maxlength="2">세<br>
+
+<script type="text/javascript">
+function isRegNum() {
+	alert('onblur 실행됨')
+}
+</script>
+
+<!-- 
+	onchange : 입력값이 변경되고 포커스가 다른 쪽으로 이동했을 때 
+			 (값이 변경되고 이동하면 실행)
+			 주로select에 많이 사용
+ -->
+우편번호:<br>
+<input type="text" maxlength="3" size="5" onchange="isPostNum(this)">
+-
+<input type="text" maxlength="3" size="5" onchange="isPostNum(this)">
+<br>
+
+<script type="text/javascript">
+function isPostNum( obj ) {
+	let str = obj.value;
+	//alert(str);
+	
+	if(str.match(/[^0-9]/g)){ //숫자가 아닌 문자가 포함된 경우 
+		alert('숫자가 아닌 문자가 포함되어 있습니다.');
+	}
+}
+</script>
+
+<select id="sel" onchange="changeVal()">
+	<option value = "apple">사과</option>
+	<option value = "pear">배</option>
+	<option value = "banana">바나나</option>
+</select>
+
+<script type="text/javascript">
+function changeVal() {
+	alert('changeval()');
+	let val = document.getElementById('sel').value;
+	alert(val);
+}
+</script>
+<br><br>
+
+<!-- 
+onkeydown, onkeypress 
+	문자열을 입력 받았을떄 철자를 검사
+-->
+
+<input type="text" name="title">
+
+<script type="text/javascript">
+/*
+document.getElementsByName('title')[0].onkeydown = function (event) {
+	console.log("keycode" + event.keyCode);
+}
+onkeydown 대소문자 상관없이 구별
+*/ 
+
+document.getElementsByName('title')[0].onkeypress = function (event) {
+	console.log("keycode" + event.keyCode);
+} //대소문자 구분 onkeypress
+
+</script>
+
+<!-- onMouseDown, onMouseUp, onMouseOver, onMouseOut -->
+<input type="image" src="images/san0.gif" 
+		onmousedown="mouseDown(this)"
+		onmouseup="mouseUp(this)"
+		onmouseover="mouseOver(this)"
+		onmouseout="mouseOut(this)">
+										
+
+<script type="text/javascript">
+function mouseDown(obj) {
+	obj.src = "images/san1.gif" //클릭시 san1.gif로 변경
+}
+function mouseUp(obj) {
+	obj.src = "images/san0.gif" //원상복구
+}
+function mouseOver(obj) {
+	obj.src = "images/san2.gif" //마우스가 올라갔을때
+}
+function mouseOut(obj) {
+	obj.src = "images/san0.gif" //마우스가 떨어졌을때 원상복구
+}
+</script>
+<br><br>
+
+<a href="#" onmouseover="document.box.src='images/surprise.gif'"
+			onmouseout="document.box.src='images/box.gif'">
+	<img alt="" src="images/box.gif" name="box">
+</a>
+
+
+
+
+</body>
+</html>

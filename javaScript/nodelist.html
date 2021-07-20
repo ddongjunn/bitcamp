@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- 
+	NodeList (dom이 아니다)
+	
+	버튼을 통해서 값을 가져오는 것 
+ -->
+ <p>hello</p>
+ <p>world</p>
+ <p>i can do it</p>
+ <p>Never change my mind</p>
+ <button type="button" onclick="listfunc()">Nodelist</button>
+ 
+ <script type="text/javascript">
+ function listfunc() {
+	let nodelist = document.getElementsByTagName('p'); //모든 p태그를 배열로 저장
+	alert(nodelist.length); // p태그의 갯수 
+	
+	nodelist[3].innerHTML = "나는 문제 없어!!"; //4번째 p태그의 값을 변경!
+	/*
+		i can do int = nodelist[3] -> 나는 문제 없어!!
+	*/
+	
+	for (i = 0; i < nodelist.length; i++){
+		nodelist[i].style.backgroundColor = '#ff0000';  //모든 ptag의 backgroundColor을 red로 셋팅
+	}
+}
+ </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<p id='demo'></p>
+
+<script type="text/javascript">
+let xhttp = new XMLHttpRequest();
+
+xhttp.onreadystatechange = function(){
+	if(this.readyState == 4 && this.status == 200){
+		//alert(this.responseXML);
+		nodeValFunc( this );
+	}	
+}
+xhttp.open("GET", "member.xml", true);
+xhttp.send();
+
+function nodeValFunc( xml ) {
+	let num, name;
+	let txt, numtxt, xmlDoc;
+	
+	txt = numtxt = '';
+	
+	xmlDoc = xml.responseXML; //위에서 this를 통해서 넘겨 받음
+	
+	num = xmlDoc.getElementsByTagName("번호");
+	name = xmlDoc.getElementsByTagName('이름');
+	console.log(num.length);
+	
+	for(let i=0; i < num.length; i++){
+		txt += num[i].childNodes[0].nodeValue + "<br>";
+		numtxt += name[i].childNodes[0].nodeValue + "<br>";
+		
+		/*
+		num을 통해서 [i]..
+		번호라는 태그 안에 태그가 없기 때문에 0번째를 통해서 가져오는것이다.
+		*/
+	}
+	
+	document.getElementById('demo').innerHTML = txt + numtxt;
+}
+</script>
+
+</body>
+</html>

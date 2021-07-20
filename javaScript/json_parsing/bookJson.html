@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<p id='demo'></p>
+<table id='mytable' border="1">
+	<tr>
+		<th>번호</th><th>제목(title)</th><th>저자(author)</th><th>가격(price)</th>
+	</tr>
+</table>
+<!-- 
+	본인이 읽은 책 : 5권
+				제목(title), 저자(author), 가격(price)
+				
+				1. xml, json 파일 제작
+				2. parsing -> 데이터
+				3. 시각화 -> table 또는 화면
+				
+ -->
+ 
+ <script type="text/javascript">
+ 
+ let table = document.getElementById('mytable');
+ 
+ let xhttp = new XMLHttpRequest();
+ xhttp.onreadystatechange = function(){
+	 if(this.readyState == 4 && this.status == 200){
+		 jsonFunc(this.responseText);
+	 }
+ }
+
+ xhttp.open('GET','book.json',true);
+ xhttp.send();
+ 
+ function jsonFunc( jsonText ) {
+	let json = JSON.parse(jsonText);
+	
+	
+	
+	for(let i=0; i < json.length; i++){
+		
+		let tr = document.createElement('tr');
+		let th = document.createElement('th');
+		th.appendChild(document.createTextNode((i+1)+''));
+		
+		let td1 = document.createElement('td');
+		td1.appendChild(document.createTextNode(json[i].title));
+		
+		let td2 = document.createElement('td');
+		td2.appendChild(document.createTextNode(json[i].author));
+		
+		let td3 = document.createElement('td');
+		td3.appendChild(document.createTextNode(json[i].price));
+		
+		tr.appendChild(th);
+		tr.appendChild(td1);
+		tr.appendChild(td2);
+		tr.appendChild(td3);
+		
+		table.appendChild(tr);
+
+	}
+}
+ 
+ 
+ 
+ </script>
+</body>
+</html>

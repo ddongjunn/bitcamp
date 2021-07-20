@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<p id="aaa" class="ddd" name="a1">hello</p>
+<p id="bbb" class="ddd" name="b1">hello</p> <!-- id는 동일하면 안된다. name은 동일해도 되지만 다르게 만든다. -->
+<br><br>
+
+<a href="Newfile.html">NewFile.html로 이동</a>
+<br>
+<!-- 
+	web페이지에서 web페이지로 이동하는 기능 <a>
+	
+ -->
+<form action="Newfile.html">
+NewFile.html로 이동
+<input type ="submit" value="이동">
+</form>
+<!-- 
+	action : 어느부분으로 이동할지
+	input : 이벤트 
+		value : 버튼의 타이틀
+	
+	앵커와 무슨차이 일까?
+	form으로 묶어서 데이터를 전송할 수 있다.
+	
+	submit는 form 하나당 무조건 1개
+ -->
+<br><br>
+
+<form action="NewFile.jsp" value="tes">
+<!-- textfield -->
+ID:<input type="text" value="" title="여기에 id 기입" size="10" placeholder="id기입" name="id">
+<!--
+ text 필드 : 기입 가능
+ size : 10칸 입력 가능
+ placeholder : 투명하게 텍스트필드에 글자가 나타남	
+ -->
+<br><br>
+PW:<input type="password" size="10" title="pw입력" name="pwd"> 
+<br>
+<input type="submit" value="NewFile.jsp로 이동">  
+<br><br><br>
+
+number:<input type="number" max="5" min="1"> 
+<!-- 
+number 숫자 설정 max는 5 min은 1
+-->
+<br>
+date:<input type="date">
+<!-- 
+	달력 날짜 선택이 가능
+ -->
+<br>
+color:<input type="color" value="#ff0000">
+<!-- 
+	팔레트 설정
+	value = 초기값을 임의로 설정
+ -->
+ <br>
+ range:<input type="range" max="10" min="0">
+ <!-- 
+ 	범위의 값을 설정
+  -->
+ <br>
+ search:<input type="search">
+ <br>
+ <br>
+ <br>
+ 
+checkbox & radio button<br>
+ 
+<input type="checkbox" value="패션">패션<br>
+<input type="checkbox" value="음악">음악<br>
+<input type="checkbox" value="게임">게임<br>
+<!-- 
+	checked="checked" -> 디폴트 값으로 체크가 되어있다.
+ -->
+<br><br>
+
+<input type="radio" name="car" value="벤츠" checked="checked">Benz
+<input type="radio" name="car" value="아우디">Audi
+<input type="radio" name="car" value="BMW">BMW
+<br><br> 
+
+<textarea rows="10" cols="30">입력해보세요</textarea> 
+<br><br>
+
+<select multiple="multiple">
+	<option value="apple">사과</option>
+	<option value="pear">배</option>
+	<option value="banana">바나나</option>
+</select>
+
+button:<input type="button" value="btn">
+<!-- 
+	고를수 있게 하는 기능.
+	multiple로 다수를 고르게 할수도 있다.
+ -->
+<!-- 여기에 있는 데이터를 가지고 이동 -->
+</form>
+<br><br>
+
+<!-- 
+	form : 값을 가지고 묶어서 보낼때! 
+	        목적
+		    1)이동의 목적이 강하다.
+		    2)name으로 되어있는 리소스 값들을 전달한다.
+		    3)submit버튼으로 이동하게 된다.
+		    
+		resource(자원)
+		textfield : 문자열을 입력받을 수 있는 창
+		button : 이벤트를 발생시킬 수 있는 버튼
+		teatArea : 입력받을 수 있는 공간
+		checkbox : 여러개를 고를 수 있는 체크박스
+		radio button :  
+		
+		html은 태그를 사용한다.
+		<태그명 속성명="특성명:값; 특성명:값" 속성명="값"> </태그명>
+			  attribute property
+			  
+		중요한 태그중 중요한것
+		<태그명 id= class= name=
+		id : Javascript에서 접근목적. 현 페이지에서 한개만이 유효  == Javascript 
+		class : js에서도 접근이 가능하지만, css에서 일단은 디자인적인 요소인 경우가 많다. == CSS 쪽이 강하다.
+				현 페이지에서 다중으로 설정이 가능하다.
+		name : 값을 전달하기 위한 목적을 가지고 있는 경우가 많다.
+				다중 설정이 가능.
+				A 페이지에서 B페이지로 이동하는경우 값을 넘겨준다.
+		
+		접근 하는 경우		 
+		<p id="aaa" class="ddd" name="a1">hello</p>
+ -->
+</body>
+</html>

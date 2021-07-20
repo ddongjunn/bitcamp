@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<books>
+	<book>
+		<title>자바의 정석</title>
+		<author>남궁성</author>
+		<price>30000</price>
+	</book>
+	<book>
+		<title>모든 자바스크립트 Deep Dive</title>
+		<author>이응모</author>
+		<price>45000</price>
+	</book>
+	<book>
+		<title>하루 10분 SQL</title>
+		<author>한상일</author>
+		<price>24000</price>
+	</book>
+	<book>
+		<title>지쳤거나 좋아하는 게 없거나</title>
+		<author>강한별</author>
+		<price>13500</price>
+	</book>
+	<book>
+		<title>미드나잇 라이브러리</title>
+		<author>매트 헤이그</author>
+		<price>15000</price>
+	</book>
+</books>

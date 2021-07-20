@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<style type="text/css">
+.back{
+	color: yellow; /* font 색 */
+		
+}
+</style>
+</head>
+<body>
+
+<table border="1">
+<col width="50"><col width="200"><col width="150">
+<tr>
+	<th>번호</th><th>이름</th><th>나이</th>
+</tr>
+
+<tr class="cls">
+	<th>1</th><td>박남규</td><td>24</td>
+</tr>
+
+<tr class="cls">
+	<th>2</th><td>이엄지</td><td>27</td>
+</tr>
+
+<tr class="cls">
+	<th>3</th><td>이초희</td><td>29</td>
+</tr>
+</table>
+
+<p>p tag</p>
+<button type="button" id="btn">버튼</button>
+
+<script type="text/javascript">
+$(document).ready(function name() {
+	$("tr.cls").mouseover(function() {
+		
+		//JS시 이런식으로 접근
+		//document.getElementsByClassName('cls').style.backgroundColor 
+		
+		//jQuery   	  (property, value)
+		$(this).css('background','green'); //현재 접근되어진 this
+	});
+	
+	$("tr.cls").mouseout(function () {
+		$(this).css('background','white');
+	});
+	
+	//클릭시에 클릭한 부분의 데이터가 p tag에 출력이 되도록 하라.
+	$("td").click(function () {
+		$("p").text($(this).text());
+	});
+	
+	//$('btn').click('function'); 과 동일하다
+	$('#btn').click(function (){
+		
+		//setter
+		$('p').css('background', "#0000ff");
+		$('p').text('여기가 p tag');
+		
+		//getter
+		let color = $('p').css('background'); //color값 return 받기.. property값만 넣어서!
+		let text = $('p').text();//text값 return받기
+		//alert(color);
+		
+		//attribute
+		//속성을 추가
+		//JS
+		//document.getElementsByTagName('p').setAttribute(name,value);
+		//document.getElementsByTagName('p').getAttribute(name);
+		
+		//jQuery
+		$("p").attr("id","pid"); //p태그에 id=pid를 추가
+		let id = $("p").attr("id"); //getter
+		alert(id);
+		
+		//$("p").addClass("back"); //p태그에 class=back 추가
+		$("p").attr("class","back");
+		
+		//html(), text(), val(), css(), attr(), prop() 정리하기
+		
+		//class 지우기
+		//$("p").attr("class","");
+		  $("p").removeClass('back');
+		  
+		 $('tr').attr('class','test');
+		
+	});
+	
+});
+</script>
+</body>
+</html>

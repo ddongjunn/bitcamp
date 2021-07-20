@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+
+에러!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+<h1>이미지 자동 삽입</h1>
+<div class='pic'>
+
+</div>
+
+<script type="text/javascript">
+$(function () {
+	for(i=1; i < 10; i++){
+		//let img = $('<img></img').attr('src','./image/photo_'+ i +'.jpg').attr('class','photo');
+		let img = $('<img></img>').attr({'src':'./image/photo_'+ i +'.jpg'},
+										{'class':'photo'});
+		$(".pic").append(img);
+		
+		}
+	
+	$('.photo').click(function() {
+		$(this).remove();
+	});
+});
+</script>
+</body>
+</html>

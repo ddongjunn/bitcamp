@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!-- query문 -->
+  <mapper namespace="mybatis.MyBatisMapper">
+  
+  <!-- mapper태그 사이에 쿼리문이 들어간다. -->
+  <!--
+  
+  #{ 문자열 }
+  ${ 숫자 } 
+   			들어가는 값		
+  	<insert parameterType="object" resultType="object">
+  		INSERT INTO HUMAN(ID, PWD, NAME)
+  		VALUES( #{ id }, #{ pwd }, #{ name } )
+  				parameterType="object"에 포함되어있는 것
+  	</insert>
+  			
+  	<delete
+  	
+  	<select
+  	
+  	<update
+  	
+   -->
+   	<!-- id=외부에서 접근하는것 -->
+   <insert id="add" parameterType="dto.MemberDto">
+   		INSERT INTO MEMBERDTO(ID, PWD, EMAIL)
+   		VALUES( #{ id }, #{ pwd }, #{ email } )
+   </insert>
+   
+   <update id="update" parameterType="dto.MemberDto">
+   		UPDATE MEMBERDTO SET PWD = #{ pwd }, EMAIL = #{ email }
+   		WHERE ID = #{ id } 
+   </update>
+   
+   <delete id="remove" parameterType="java.lang.String">
+   		DELETE FROM MEMBERDTO 
+   		WHERE ID = #{ id }
+   </delete>
+   
+    <delete id="removeObj" parameterType="dto.MemberDto">
+   		DELETE FROM MEMBERDTO 
+   		WHERE ID = #{ id } AND PWD = #{ pwd }
+   </delete>
+   
+   <!-- select one -->
+   <select id="search" parameterType="java.lang.String" resultType="dto.MemberDto">
+   		SELECT * FROM MEMBERDTO WHERE ID = #{ id }
+   </select>
+   
+   <!-- select list -->
+   <select id="allData" resultType="dto.MemberDto">
+   		SELECT * FROM MEMBERDTO 
+   </select>
+   
+   <!-- bbs search -->
+   <select id="bbsSearch" parameterType="dto.BbsParam" resultType="dto.BbsDto">
+   		SELECT * 
+   		FROM BBS
+   		WHERE 1=1 <!-- 참인 조건 if조건에 해당이 되지 않을 경우를 생각! -->
+   		<if test="category == 'title'">
+   			AND TITLE LIKE '%' || #{ keyword } || '%'    <!-- db에서 +는 || -->
+   		</if>
+   		<if test="category == 'content'">
+   			AND CONTENT LIKE '%' || #{ keyword } || '%'    
+   		</if>
+   		<if test="category == 'id'">
+   			AND ID = #{ keyword }   
+   		</if>
+   		ORDER BY REF DESC, STEP ASC 
+   </select>
+ 
+  
+  </mapper>

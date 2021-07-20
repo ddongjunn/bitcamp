@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<!-- 
+		JSON : Java Script Object Notation
+									표기법
+									
+			   Server(java) < -- > Client(Ajax)
+ 			   ArrayList		   Json
+ 			   HashMap
+ 			   
+ 			   
+ 			   Json = key : value로 되어있다.
+ 			   key값을 통해서 value값을 꺼낼 수 있다.
+ 			  
+ 			   { number:10, age:20, count:30 } 접근시에는 key값으로 접근을 하게 된다. (number, age, count)
+  					key:value
+ 			  
+ 			   예를들어서 JS에 [10, 20, 30]배열이 있을때 - index로 관리한다. (0, 1, 2)
+ 			   HashMap은 키로 관리를 한다.
+ 			   
+ 			   만약 데이터를 여러개라고 가정했을 경우 
+ 			   [
+ 			   		{0번째
+ 			   			name:"홍길동",
+ 			   			age:24,
+ 			   			address:"서울시"
+ 			   		},
+ 			   		{1번째
+ 			   			name:"성춘향",
+ 			   			age:16,
+ 			   			address:"남원시"
+ 			   		}
+ 			   ]  				
+ 			   이런식으로 관리를 한다.
+ 			   
+ 			   
+ 			   클라이언트에서 Json으로 서버에게 전송을 해주면 서버에서는 ArrayList나 HashMap으로 받게 된다.
+ 			   반대도 마찬가지다.
+ 			   
+ 			   XML을 DOM을 사용해서 TAG에 접근을 하여 값에 접근을 하였지만
+ 			   JSON은 DOM을 사용하지 않아도 된다.
+			   
+ -->
+ 
+ 
+ 
+<p id='demo'></p>
+
+<script type="text/javascript">
+
+let jsonDate = [
+					{
+						name:"홍길동",
+						age:24
+					},
+					{
+						name:"성춘향",
+						age:16		
+					},
+					{
+						name:"일지매",
+						age:22	
+					}
+				]; //json 데이터
+				
+alert(jsonDate); //출력 : [object Object] 				
+document.getElementById('demo').innerHTML = jsonDate[0].name + " " + jsonDate[0].age;
+				
+let jsonText = '{"name":"홍두께", "age":25, "주소":"서울시"}';  //이건 json 데이터가 아니다. 문자열이다!
+alert(jsonText);
+document.getElementById('demo').innerHTML = jsonText.name; //출력 : undefined 
+
+//json으로 바꿔주는 작업
+let jsonObj = JSON.parse(jsonText); //String -> Json(obj) 이때 jsonText의 key값은 문자열 이어야 한다.
+//alert(jsonObj);
+document.getElementById('demo').innerHTML = jsonObj.name +" "+ jsonObj.주소;
+
+//json (object) -> String 
+let jsonStr = JSON.stringify(jsonObj); 
+//alert(jsonStr);
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

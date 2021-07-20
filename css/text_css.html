@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+body{
+	color: green;
+	text-align: center;
+}
+h1{
+	color: #ff0000;
+	text-decoration: overline; /* overline: 윗라인, underline 아랫라인 */
+	
+}
+p{
+	color: rgb(0,0,255);
+}
+.upper{
+	text-transform: uppercase;
+}
+.lower{
+	text-transform: lowercase;
+}
+.cap{
+	text-transform: capitalize;
+}
+p.setif{ /*클래스명이 중복될 경우 .앞에 태그명을 써줘도 된다. */
+	font-family: "Times New Roman";
+	font-style: italic;
+	font-size: 1.5em;
+	color: rgb(0,255,0);
+}
+a{
+	text-decoration: none; /* <a> 선을 아예 없앰 */
+}
+a:link {
+	color:fuchsia;
+}
+a:visited { /*방문했던 사이트 표시 */
+	color: teal;
+}
+a:hover { /* 마우스 핸들러 처럼 글씨 색 변경 */
+	color: rgb(0, 0, 255);
+	background-color: navy;
+	text-decoration: underline;
+}
+
+</style>
+</head>
+<body>
+<h1>h1 tag</h1>
+
+<p>여기는 p tag 입니다</p>
+
+<p class='upper'>Hello css</p>
+<p class='lower'>Hello css</p>
+<p class='cap'>Hello css</p>
+
+<p class='setif'>Hello My World. Welcome</p>
+
+<a href='http://www.google.com' onmouseover="func()" onmouseout="out()" id='atag'>Google Home Page</a>
+<br>
+<a href='http://www.naver.com'>Naver Home page</a>
+
+<script type="text/javascript">
+function func() {
+	let obj = document.getElementById('atag');
+	obj.style.background = '#00ff00';
+}
+function out() {
+	let obj = document.getElementById('atag');
+	obj.style.background = '#ffffff';
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<p id="demo"></p>
+<br>
+<button type="button">클릭</button>
+
+<script type="text/javascript">
+$(document).ready(function () {
+	
+	$('button').click(function () {
+		$.ajax({ //ajax 기본형태
+			
+			///////////////////send
+			url : "data.jsp",
+			type : "get",
+			data : "t1=XYZ&t2=자차카",
+		    //data : {t1:"XYZ", t2:"다라마"},
+			///////////////////
+			
+			////////////////recive
+			success : function (data, status, xhr) { //status, xhr은 생략해도 상관없다.
+				//alert('success');
+				//alert(data);
+				
+				$("#demo").html(data);
+				//alert(status);
+				alert(xhr.responseText);
+			},
+			error : function (xhr, status, error) {
+				alert('error');
+			},
+			complete : function (xhr, status) {
+				alert('통신종료'); //생략가능 finally랑 비슷
+			}
+			
+			//success(data)
+			//error(파라미터생략가능) 
+			//complete 생략가능
+			//////////////
+		});
+	});
+});
+</script>
+</body>
+</html>

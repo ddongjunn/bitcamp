@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="./jquery/jquery.min.js"></script>
+</head>
+<body>
+<p id='demo'>button 구현 차이점</p>
+
+<button type="button" onclick="func()">Java Script 버튼</button>
+
+<button type="button" id="btn">JQuery 버튼</button>
+
+<script type="text/javascript">
+//JavaScript
+function func() {
+	alert('JavaScript button click');
+}
+
+//JQuery
+$(document).ready(function () { //버튼의 경우 ready 안해줘도 가능하다.
+	/* $("button").click(function name() { //button 태그 다 실행
+		alert("jQuery 버튼 클릭")
+	}); */
+	
+	//방법1
+	/*$("#btn").click(function () {
+		alert('id=btn click');
+	});*/
+	
+	//방법2
+	$("#btn").on("click", function () {
+		alert("jQuery button click");
+	});
+	
+	//방법2의 문법과 동일한 문법.. 풀어서 작성	
+	/* $("#btn").click(btnProc);
+	
+	function btnProc() {
+		alert('btnProc 버튼 클릭');
+	} */
+});
+</script>
+</body>
+</html>

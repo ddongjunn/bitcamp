@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+<h1>배경 화면의 설정</h1>
+<br>
+<button type="button" onclick="document.bgColor='red'">빨강</button>
+<button type="button" onclick="colorset(1)">녹색</button>
+<button type="button" onclick="document.bgColor='white'">하얀색</button>
+<hr>
+
+<input type="checkbox" id="eng">영어(소문자)를 선택<br><br>
+답:<input type="text" id="answer" size="10">
+<button type="button" onclick="check()">답을 클릭</button>
+<hr>
+
+<form name="frm">
+<input type="checkbox" name="eng">영어(소문자)를 선택<br><br>
+답:<input type="text" name="answer" size="10">
+<button type="button" onclick="check2()">답을 클릭</button>
+</form>
+<hr>
+
+<h1>미술관 및 박물관 링크</h1>
+<select id="links" onchange="golink()">
+	<option>대상을 선택</option>
+	<option>미술관---------</option>
+	<option value="https://sema.seoul.go.kr/" >서울시립미술관</option>
+	<option value="http://www.mmca.go.kr/main.do" >국립현대미술관</option>
+	<option value="https://www.sac.or.kr/site/main/home" >예술의전당</option>
+	<option>박물관---------</option>
+	<option value="https://www.museum.go.kr/site/main/home">국립중앙박물관</option>
+	<option value="https://museum.seoul.go.kr/www/NR_index.do?sso=ok" >서울역사박물관</option>
+	<option value="https://www.nfm.go.kr/home/index.do" >국립민속박물관</option>
+</select>
+<hr>
+<h1>2개의 주사위</h1>
+버튼을 클릭하면 2개의 주사위가 랜덤됩니다.<br><br>
+<img alt="" src="./images/sai_1.gif" id="d1">
+<img alt="" src="./images/sai_1.gif" id="d2">
+
+<p id="dic1">합계</p>
+<button type ="button" onclick="dice()">click</button>
+<hr>
+
+<h1>환영합니다</h1>
+현재 시각은 <input type="text" size="20" id="timebox">입니다.
+<hr>
+<script type="text/javascript">
+function colorset( num ) {
+	if(num == 1){
+		document.bgColor = "#00ff00";
+	}
+}
+
+function check() {
+	let eng = document.getElementById('eng').checked; //true/false
+	let answer = document.getElementById('answer').value;
+	
+	if(eng){
+		if(answer == "apple"){
+			alert("정답입니다.");
+		}else{
+			alert("오답입니다.");
+		}	
+	}else{
+		if(answer == "사과"){
+			alert("정답입니다.");
+		}else{
+			alert("오답입니다.");
+		}
+	}
+}
+
+function check2() { //다양한 접근 방법
+	/* let checkbox = document.frm.eng.checked;
+	let answer = document.frm.answer.value; */
+	
+	let checkbox2 = document.forms[0].elements[0].checked; //forms[0] form의 갯수
+	let text = document.forms[0].elements[1].value;
+	
+	if(checkbox2){
+		if(text == "apple"){
+			alert("정답입니다.");
+		}else{
+			alert("오답입니다.");
+		}	
+	}else{
+		if(text == "사과"){
+			alert("정답입니다.");
+		}else{
+			alert("오답입니다.");
+		}
+	}	
+}
+
+function golink() {
+	//select index가 필요하다.
+	let selectIndex = document.getElementById('links').selectedIndex;
+	let url = document.getElementById('links').options[selectIndex].value;
+	//url엔 링크가 들어온다. 
+	
+	if(selectIndex != 0 && selectIndex != 1 && selectIndex !=5){
+		location.href = url;
+	}
+}
+
+function dice() {
+	let r1 = Math.random() * 6;
+	let r2 = Math.random() * 6;
+	
+	r1 = Math.ceil(r1); //올림
+	r2 = Math.ceil(r2);
+	
+	document.getElementById('d1').src = "./images/sai_" + r1 +".gif";
+	document.getElementById('d2').src = "./images/sai_" + r2 +".gif";
+	
+	document.getElementById('dic1').innerHTML = r1 + r2;
+	
+	//document.images[0].src = "./images/sai_" + r1 +".gif"; //이런식으로도 접근 가능
+}
+
+function nowTime() {
+	let now = new Date();
+	let hour = now.getHours();
+	let minute = now.getMinutes();
+	let second = now.getSeconds();
+	
+	if(hour < 10){
+		hour = "0" + hour;
+	}else if(minute < 10){
+		minute = "0" + minute;
+	}else if(second < 10){
+		second = "0" + second;
+	}
+	
+	document.getElementById('timebox').value = hour + ":" + minute + ":" + second;
+}
+
+setInterval("nowTime()",1000);
+</script>
+</body>
+</html>

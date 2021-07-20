@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+
+<h1>사진들</h1>
+<img alt="" src="image/img01.jpg" picname="성 자비에르 성당 (외관)">
+<img alt="" src="image/img02.jpg" picname="성 자비에르 성당 (내관)">
+<img alt="" src="image/img03.jpg" picname="낡은 건물">
+<img alt="" src="image/img04.jpg" picname="가로등">
+
+<script type="text/javascript">
+$(document).ready(function () {
+	$('img').click(function () { //사용자 지정 태그를 사용해도 접근이 가능하다.
+		let picname = $(this).attr('picname');
+		alert(picname);
+	});
+});
+
+</script>
+</body>
+</html>

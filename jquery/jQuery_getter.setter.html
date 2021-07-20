@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script src="./jquery/jquery.min.js"></script>
+</head>
+<body>
+입력:<input type="text" id="demo" value="">
+<br>
+<!--  <input type="button" id="btn" value="버튼"> -->
+<button id="btn">버튼</button>
+
+<script type="text/javascript">
+$(document).ready(function () {
+	$("#btn").click(function () {
+		
+		//getter
+		let value = $("#demo").val();
+		alert(value);
+		
+		//setter
+		$("#demo").val("hi nice to meet you");
+	})
+});
+
+</script>
+</body>
+</html>

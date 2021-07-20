@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+
+<!-- tag 추가 -->
+<button type="button">태그 추가</button>
+
+<script type="text/javascript">
+$("button").click(function () {
+	
+	//3가지 방법
+	//1.text로 추가
+//	let txt = "<p>p 태그 추가함 - text</p>";
+//	$("body").append(txt);    //body태그에 추가
+	
+	//2.JavaScript로 추가
+//	let obj = document.createElement('h3');
+//	obj.innerHTML = "h3 태그 추가 - JavaScript";
+//	$("body").append(obj);
+	
+	//3.jQuery로 추가
+	let jqu = $("<p>").html('p 태그 추가 - jQuery'); //
+	$("body").append(jqu);
+	
+});
+</script>
+</body>
+</html>

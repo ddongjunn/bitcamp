@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<!-- 
+	Servlet = Server + Applet
+	
+	Model2에 사용을 한다.
+	
+	Servlet == Controler
+	
+ -->
+ <h1>Servlet 기본</h1>
+ <form action="helloServlet" method="get"> <!-- defalut:get -->
+ 	<input type="submit" value="Get방식">
+ </form>
+ 
+ <form action="helloServlet" method="post">
+ 	<input type="submit" value="Post방식">
+ </form>
+ 
+ <!-- 
+ 	html
+ 	<a           -> Get, post 구분이 없다. 무조건 get
+ 	<form		 -> Get/Post 
+ 	
+ 	JavaScript
+ 	location.href ->Get
+ 	
+ 	Java
+ 	
+  -->
+  
+<a href="helloServlet">Hello Servlet 이동</a>
+ <form action="helloServlet" method="post">
+ 	<input type="submit" value="Hello Servlet 이동">
+ </form>
+</body>
+</html>

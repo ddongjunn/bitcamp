@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<p id='demo'>p tag</p>
+<button type='button' onclick='loadXMLDoc()'>내용 변경</button>
+
+<script type="text/javascript">
+
+let xhttp = new XMLHttpRequest(); //XML을 통신을 하기 위한 것 (요청)
+
+function loadXMLDoc() {
+	//Java Script Ajax가 이코드 이다.. 보통 이렇게해서 컨트롤러와 통신을 한다.
+	
+	xhttp.onreadystatechange = function () {
+		/* console.log(this.responseText);	//response : 응답
+		console.log(this.status);	// 200
+		console.log(this.readyState); // 0 1 2 3 4 
+		
+		this = xhttp
+		*/ 
+		
+		if(this.readyState == 4 && this.status == 200){
+			document.getElementById('demo').innerHTML = this.responseText;
+		}
+	}
+	xhttp.open("GET", "test.txt", true);
+	xhttp.send();
+	
+}
+/*
+ 	통신 하기 위해서는 객체가 필요하다.
+ 	
+ 	함수 -> open -> send -> 함수 요청
+ 	
+ 	파일내용 response
+ 	
+ 	순서
+ 	
+ 	readyState : 진행 상태
+ 	0	-> open 메소드를 수행하기 전 상태
+ 	1	-> loading 중.....
+ 	2	-> loading 완료
+ 	3	-> Server 처리중
+ 	4	-> Server 처리 완료
+ 	
+ 	status : 상태 
+ 	200 -> 성공(success)
+ 	403 -> 접근금지 
+ 	404 -> 없음. 못찾는 경우. ex) test.txt가 없는 경우
+ 	500 -> 구문에러(문법 에러)
+ 	
+ 	responseText 다 읽었을때 txt를 불러오는 것
+ 	
+ 
+ */
+
+
+</script>
+</body>
+</html>

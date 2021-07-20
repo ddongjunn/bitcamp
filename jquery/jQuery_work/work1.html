@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+
+<h1>room image</h1>
+<img alt="" src="./image/p001.jpg"  id='pic'>
+
+<script type="text/javascript">
+$(function () {
+	let num = 0;
+	let imageName = ["p001","p002","p003","p004"]
+	$('#pic').click(function () {
+		/* if(num==0){
+			$(this).attr('src','./image/p002.jpg');
+			num=1;
+		}else{
+			$(this).attr('src','./image/p001.jpg');
+			num=0;
+		} */
+		
+		/*
+		//만약 이미지가 많으면?
+		if(num == 3) num=0;
+		else num++;
+		
+		$(this).attr('src',"./image/" + imageName[num]  + ".jpg");
+		*/
+		
+		
+	}); 
+	
+	$('#pic').hover(
+			function () { //mouseover
+				$(this).attr('src','./image/p001.jpg');
+			},
+			function () { //mouseout
+				$(this).attr('src','./image/p002.jpg');
+			},
+			
+		);
+	
+});
+
+function func() { //이런 경우 함수가 자동으로 호출이 되지 않는다.. 위에 함수는 한번 호출하고 실행..
+	alert('func()');
+}
+</script>
+</body>
+</html>

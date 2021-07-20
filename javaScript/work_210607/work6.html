@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body bgcolor="#000" text="#ffffff">
+
+<h1>사진들</h1>
+<table>
+<tr>
+	<td>
+		<img alt="" src="./images/pic01.jpg" name="photo" border="3">
+	</td>
+	<td valign="top" style="padding-left:10px">
+		<form name="frm">
+			<select name="picture" onchange="photochange()">
+				<option>사진들</option>
+				<option value="./images/pic01.jpg">그림1</option>
+				<option value="./images/pic02.jpg">그림2</option>
+				<option value="./images/pic03.jpg">그림3</option>
+				<option value="./images/pic04.jpg">그림4</option>
+			</select>
+		</form>
+	</td>
+</tr>
+</table>
+
+<script type="text/javascript">
+function photochange() {
+	let index = document.frm.picture.selectedIndex;
+	alert(index);
+	
+	console.log(document.photo.src);
+	console.log(document.frm.picture.options[index].value);
+	
+	if(index != 0){
+		document.photo.src = document.frm.picture.options[index].value;
+	}
+}
+
+setInterval("남규네집()",50);
+</script>
+</body>
+</html>
+

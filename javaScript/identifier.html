@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+</head>
+<body>
+<p id="pid">p tag id pid</p>
+<p id="pid">p tag id pid</p>
+<button type="button" onclick="func()">버튼</button>
+<br>
+
+<p class="cls">p tag class cls</p>
+<p class="cls">p2 tag class cls</p>
+<h3 class="cls">h3 tag class cls</h3>
+<button type="button" onclick="func2()">버튼</button>
+<br>
+
+<p name="name">p tag name name</p>
+<h3 name="name">h3 tag name name</h3>
+<button type="button" onclick="func3()">버튼</button>
+
+
+<script type ="text/javascript">
+function func(){
+//    alert("func()");
+    document.getElementById('pid').innerHTML = 'p 태그 입니다.';
+}
+function func2(){
+    document.getElementsByClassName('cls')[0].innerHTML = 'p tag class는 cls 입니다.';
+    document.getElementsByClassName('cls')[1].innerHTML = 'p2 tag class는 cls 입니다.';
+    document.getElementsByClassName('cls')[2].innerHTML = 'h3 tag class는 cls 입니다.';
+}
+function func3(){
+    document.getElementsByName('name')[0].innerHTML = 'p3 tag name은 name 입니다';
+    document.getElementsByName('name')[1].innerHTML = 'h3 tag name은 name 입니다';
+}
+
+</script>
+<!--
+  access attribute
+
+  id : 검사, 1개만 유효
+       <input type="text" id="loginid">
+  class : CSS용, 다수가 유효, 버튼(다수) this
+  name : 데이터 전송용으로 많이 사용
+
+  id = pid / func()
+  innerHTML = 일반 HTML
+  동일 id가 2개일경우 그 페이지에서 1개만 적용이 된다.
+
+  class = cls func2()
+  번수를 가지고 접근이 가능하다. 다수에 적용이 된다.
+  for문을 통해 다수 적용 가능
+
+  name = name func3()
+  name은 접근도 가능하지만, 잘 사용하는 편은 아니다. DOM
+
+!-->
+</body>
+</html>

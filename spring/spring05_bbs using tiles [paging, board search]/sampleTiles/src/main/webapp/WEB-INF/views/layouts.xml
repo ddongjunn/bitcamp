@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<definition name="member.tiles" template="/WEB-INF/views/layouts-tiles.jsp"> <!-- 기본템플릿 설정 -->
+		<put-attribute name="header" value="/WEB-INF/views/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/views/member/leftmenu.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/member/login.jsp" />
+		<put-attribute name="empty" value="/WEB-INF/views/empty.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
+	</definition>
+	
+	<!-- 상속 -->
+	<definition name="regi.tiles" extends="member.tiles"> <!-- 기본템플릿 설정 -->
+		<put-attribute name="content" value="/WEB-INF/views/member/regi.jsp" />
+	</definition>
+</tiles-definitions>

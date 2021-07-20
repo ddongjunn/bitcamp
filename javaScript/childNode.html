@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- 
+	DOM : Document Object Model	
+		  각 tag를 접근하기 위한 object
+		  그 object를 접근하기 위한 함수들
+		
+		  document -> 문서안의 tag에 접근하도록 만들어진 object
+		  
+		  getElementById
+		  getElementsByClass -> []
+		  getElementsByName	-> []
+		  getElementsByTagName	-> []
+		  
+ -->
+
+
+	<!-- 
+ 	childNodes
+ 	처음시작태그부터 0
+ 	각 태그 모두..
+ 	
+ 	<select id="cars"> 0
+	   1	<option>Benz</option>  2
+	   3	<option>BMW</option>   4 
+	   5	<option>volvo</option> 7
+	</select>
+ 	
+ 	
+ 	html의 경우 노드는 head와 body가 존재
+ 	
+ 	h3에 tag에 들어가 있는 child Node는 
+  -->
+	<h3 id="intro">h3 tag id=intro</h3>
+
+	<p id='demo'>p tag id=demo</p>
+
+	<button type="button" onclick="func()">버튼</button>
+	<br><br>
+	
+	<script type="text/javascript">
+	function func() {
+	//let text = document.getElementById('intro').childNodes[0].nodeValue;
+	let text = document.getElementById('demo').childNodes[0].nodeValue;
+	alert(text);
+	//현재는 0번째 밖에 없다. 현재 노드가 없다.	
+	}
+
+</script>
+	
+	<select id="cars"> 
+		<option>Benz</option>
+		<option>BMW</option>
+		<option>volvo</option>
+	</select>
+	<button type="button" onclick="cars()">선택</button>
+	<br><br>
+	
+	<script type="text/javascript">
+	function cars() {
+		let carName = document.getElementById('cars').childNodes; 
+		alert(carName.length); // result : 7
+		alert(carName[3].text); // result : BMW
+	}
+	</script>
+	
+	<!-- 
+		appendChild(뒤) insertChild(앞)
+	 -->
+	 <div id="div1">
+	 	<p id="p1">첫번째 p태그</p>
+	 	<p id="p2">두번째 p태그</p>
+	 </div>
+	 
+	 <button type="button" onclick="appendfunc()">뒤에 추가</button>
+	 <button type="button" onclick="insertfunc()">앞에 추가</button>
+	 <button type="button" onclick="deletefunc()">삭제</button>
+	 
+	 <script type="text/javascript">
+	 function appendfunc() {
+		let ptag = document.createElement('p'); //<p></p> 추가 (태그생성)
+		let textNode = document.createTextNode('새로운 p tag'); //ptag안에 들어갈 문자
+		
+		//새로운 ptag에 id와 클래스를 추가
+		ptag.id = 'newid'; //id를 추가할때
+		ptag.className = 'newcls' //cls를 추가할때
+		
+		ptag.appendChild(textNode); //<p id="newid" class="newcls">새로운 p tag</p> 추가!
+									//이걸 div에 추가하려면?
+											
+		let element = document.getElementById('div1')
+		element.appendChild(ptag); //맨 뒤에 추가
+		
+	}
+	 function insertfunc() {
+		let h3tag = document.createElement('h3'); //h3 태그 만들기
+		let textNode = document.createTextNode('h3 태그를 추가');
+		
+		h3tag.appendChild(textNode); //<h3>h3 태그를 추가</h3>
+		
+		let element = document.getElementById('div1');
+		let elementBefore = document.getElementById('p1'); //id가=p1 요소 앞에
+        
+		element.insertBefore(h3tag, elementBefore);
+		//앞에다 추가하는 경우 어디 앞에 라고 지정해줘야 한다.
+		
+	}
+	 function deletefunc() {
+		
+		 let element = document.getElementById('div1');
+		 let removeElement = document.getElementById("p1"); //어떤 id 태그를 삭제할지?
+		 
+		 element.removeChild(removeElement); //삭제 
+	}
+	 </script>
+	 
+	 
+	
+</body>
+</html>

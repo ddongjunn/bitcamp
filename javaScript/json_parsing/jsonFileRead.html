@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<p id='demo'></p>
+
+<script type="text/javascript">
+
+let xhttp = new XMLHttpRequest(); //json도 parsing을 하려면 xml을 사용
+
+xhttp.onreadystatechange = function () {
+	if(xhttp.readyState == 4 && xhttp.status == 200){ //file을 읽어들이는데 성공했을 때
+		jsonFunc( xhttp.responseText );
+		//jsonFunc( this.responseText );
+		
+	}
+}
+xhttp.open("GET","member.json",true);
+xhttp.send();
+
+function jsonFunc( jsonText ) {
+	alert(jsonText); //현재 json이 아니다. 왜? obj가 아니기 때문에
+	
+	let json = JSON.parse(jsonText);
+	alert(json);
+	
+	let txt = "";
+	/* for(let i=0; i < json.length; i++){
+		for(key in json[i]){
+			txt += key + ":" + json[i][key];
+		}
+		txt += "<br>";
+	} */
+	
+	//다른 방법
+	for(let i=0; i < json.length; i++){
+		txt += json[i].name + " " + json[i].age + " " + 
+			   json[i].address + " " + json[i].height + "<br>"; 
+	}
+	
+	document.getElementById('demo').innerHTML = txt;
+}
+</script>
+</body>
+</html>

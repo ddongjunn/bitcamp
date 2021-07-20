@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<h3>문제</h3>
+다음 이차 방정식을 해를 구하고, 그 버튼을 클릭하십시오<br>
+<p style="font-size: xx-large;margin-left:30px">x<sup>2</sup> - 5x = -6</p> <!-- margin: 바깥 여백-->
+
+<br>
+<button type="button" onclick="result(1)">x = 1</button>
+<button type="button" onclick="result(2)">x = 2</button>
+<button type="button" onclick="result(3)">x = 3</button>
+<button type="button" onclick="result(4)">x = 4</button>
+<button type="button" onclick="result(5)">x = 5</button>
+<br><br>
+올바른 답은 2개입니다.
+
+<script type="text/javascript">
+function result( n ) {
+	let re = Math.pow(n, 2) - (5 * n);
+	if(re == -6){
+		alert('올바른 답 입니다.');
+	}else{
+		alert('부정 답 입니다.');
+	}
+}
+</script>
+</body>
+</html>

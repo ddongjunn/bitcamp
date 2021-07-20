@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="" name="frm">
+<div align="center">
+<strong>라면 타이머</strong>
+<br><br>
+
+<select id="_selid" name="selid">
+  <option value="180">원하는 시간을 선택해 주십시오(기본 시간 3분)</option>
+  <option value="300">5분</option>
+  <option value="180">3분</option>
+  <option value="120">2분</option>
+  <option value="60">1분</option>
+  <option value="30">30초</option>
+</select>
+
+<input type="button" value="Timer Start" onclick="noodle()">
+<br><br>
+<span id="countdown">time selected</span> <!--div태그랑 비슷. css적용시 많이 사용한다.-->
+<br><br>
+
+<button type="button" onclick="window.close()">close</button><br><br>
+</div>
+
+</form>
+<script type="text/javascript">
+
+  let index = 0;
+  let value = 0;
+
+  let time = 0;
+
+function noodle(){
+
+  clearInterval(time); //timer 초기화
+
+  index = document.frm.selid.selectedIndex;
+  console.log(index);
+  value = parseInt(document.frm.selid.options[index].value); //name안에 options를 가져온다. 배열로 되어있다.
+
+  time = setInterval('noodleTimer()',1000); //1초마다 noodleTime()호출
+}
+function noodleTimer(){
+  value = value - 1;
+
+  document.getElementById('countdown').innerHTML = "완료까지 <b>" + value + "</b>초 남았습니다.";
+  if(value == 0){
+    clearInterval(time);
+
+    let audio = new Audio('AlarmClockBell.wav');
+    audio.play();
+  }
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<style type="text/css">
+
+#h1{
+  font: bold 2em sans-serif;
+}
+
+#table{
+  border-collapse: collapse;
+  margin: 20px 0px;
+}
+
+th{
+  text-align:center;
+  background-color: #669966;
+  padding:5px 10px;
+  border: solid 1px #CCCCCC;
+}
+
+td{
+  text-align:left;
+  padding:5px 20px;
+  border: solid 1px #CCCCCC;
+}
+
+
+</style>
+</head>
+<body>
+<!-- 데이터 넣기 -->
+
+<h1 id='h1'>수영시합</h1>
+
+<table id='table' border="1">
+<tr>
+	<th>title</th><th>name</th><th>time</th>
+</tr>
+
+<tr>
+	<th>우승</th><td></td><td>
+</tr>
+
+<tr>
+	<th>2위</th><td></td><td>
+</tr>
+
+<tr>
+	<th>3위</th><td></td><td>
+</tr>
+
+</table>
+<script type="text/javascript">
+let woman = [ //back end 에서 가져온 data
+	["",""],
+	["성춘향","01:06:11"],
+	["향단이","01:18:23"],
+	["심청이","01:23:51"]
+];
+
+console.log(woman.length);
+console.log(woman[1].length);
+
+for(i=0; i < woman.length; i++){ //4
+	for(j=0; j < woman[i].length; j++){ //2
+		$("tr:eq("+ i +") td:eq("+ j +")").html(woman[i][j]);
+	}
+}
+
+//$("tr:eq(1) td:eq(0)").html('input data'); //tr : 1번째, td : 0번째
+</script>
+</body>
+</html>

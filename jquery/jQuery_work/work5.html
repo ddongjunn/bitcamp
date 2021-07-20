@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<style type="text/css">
+.aaa{
+	color:red;
+}
+.ccc {
+ padding:10px;
+ border:#000 2px solid;
+ background-color: red;
+}
+.q16_a {
+ text-decoration:underline;
+ color:#00F;
+}
+.q19_b{
+ text-decoration:overline;
+ color:yellow;
+}
+#q20 {
+ background:#FFF;
+ width:100px;
+ height:100px;
+}
+</style>
+</head>
+<body>
+<p id="q01">Hello jQuery</p>
+
+<hr>
+
+<p id="q02">Hello jQuery</p>
+
+<hr>
+
+<p id='q03'></p>
+
+<hr>
+
+<p id='q04'>하이</p>
+
+<hr>
+
+<p id='q04'>하이</p>
+
+<hr>
+
+<ul id='q05'>
+	<li>리스트1</li>
+	<li>리스트2</li>
+	<li>리스트3</li>
+</ul>
+
+<hr>
+
+<ul id='q06'>
+	<li>리스트1</li>
+	<li>리스트2</li>
+	<li>리스트3</li>
+</ul>
+
+<hr>
+
+<p id='q07' style='color:red'>hello world</p>
+<p id='q08'></p>
+
+<hr>
+
+<p id='q09'>반드시 </p>
+
+<hr>
+
+<p id='q10'>나는 성공한다. 내 이름은 </p>
+
+<hr>
+
+<ul id='q11'>
+	<li>커피</li>
+</ul>
+
+<hr>
+
+<ul id='q12'>
+	<li>커피</li>
+	<li>카푸치노</li>
+</ul>
+
+<hr>
+
+<p id="q13">최선을 다해서</p>
+
+<hr>
+
+<div class="ccc">
+ <p id="q14">최선을 다해서</p>
+</div>
+
+<hr>
+
+<p class="q15">가가가</p>
+<p>나나나</p>
+<p class="q15">다다다</p>
+<p>라라라</p>
+<p class="q15">마마마</p>
+
+<hr>
+
+<p class="q16">Ｑ16</p>
+
+<hr>
+
+<p class="q17">
+	<a href="#">aaa</a>
+</p>
+<p>
+	<a href="#">bbb</a>
+</p>
+<p class="q17">
+	<a href="#">ccc</a>
+</p>
+<p>
+	<a href="#">ddd</a>
+</p>
+<p class="q17"><a href="#">eee</a></p>
+
+<hr>
+
+<p class="q18">
+	<a href="#">AAA</a>
+</p>
+<p>
+	<a href="#">BBB</a>
+</p>
+<p class="q18">
+	<a href="#">CCC</a>
+</p>
+<p>
+	<a href="#">DDD</a>
+</p>
+<p class="q18">
+	<a href="#">EEE</a>
+</p>
+
+<hr>
+
+<p class="q19_a">q19</p>
+
+<hr>
+
+<p id="q20">q20</p>
+
+
+<script type="text/javascript">
+$(function () {
+	$('#q01').css('color','red');
+	
+	/* $('#q02').css('color','blue');
+	$('#q02').css('background','yellow'); */
+	 $('#q02').css({'color':'blue', 'background':'yellow'});
+	
+	$('#q03').text('jQuery');
+	
+	$('#q04').html('<a href=#>안녕하세요</a>');
+	
+	$('#q05').addClass('aaa');
+	
+	$('#q06 li').remove(); 
+	
+	let color = $('#q07').css('color');
+	$('#q08').text(color);
+	
+	//prepend 앞쪽에 추가 / append 뒤쪽에 추가
+	$('#q09').prepend('나는 성공한다');
+	
+	$('#q10').append('이동준');
+	
+	$('#q11 li').before('<li>홍차</li>'); //커피 전에 추가 
+	
+	//$('#q12 li').after('<li>홍차</li>'); //이렇게 하면 커피뒤에도 추가가되고, 카푸치노 뒤에도 추가가 된다.
+	$('#q12 li').eq(-1).after('<li>홍차</li>');
+	
+	$('#q13').wrap("<div class='ccc'</div>");
+	
+	$('#q14').unwrap('div.ccc')
+	
+	$('p.q15').replaceWith('<p>xxx</p>');
+	
+	//$('.q16').addClass('q16_a');
+	$('.q16').attr('class','q16_a');
+	
+	$('p.q17 a').removeAttr('href');
+	
+	$('p.q18 a').attr('target','_blink');
+	
+	$('.q19_a').toggleClass('q19_b');
+	
+	$('#q20').offset({top:0, left:150}); //x축, y축 좌표..
+});
+</script>
+</body>
+</html>

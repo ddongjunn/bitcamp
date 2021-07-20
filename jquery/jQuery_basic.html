@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+
+<script src="./jquery/jquery.min.js"></script>
+</head>
+<body>
+
+<!-- 
+	Java Script : client(front) - view
+				  화면의 resource(input)의 값을 설정, 취득하는 처리
+				  DOM(nodelist, getElementById)
+				  
+	JQuery : Java Script 경량화, 간략화..
+		다른걸 더 많이 사용한다..
+		
+		중요한거 1가지.. == ajax(비동기 통신)
+		
+	범위로 따지면 Java Script > JQuery > ajax
+	
+	react, vue를 많이 사용..
+	JavaScript로 구현해놓은 프레임워크
+	
+ -->
+ 
+ <script type="text/javascript">
+ /*
+ 	형식:   접근할	  #     .
+ 		$( tag명, id, class, name ).핸들러 함수(매개변수)		onclick(JS)..
+ 		
+ 		getter
+ 		let val = document.getElementById('id').value;
+ 		
+ 		setter
+ 		document.getElementById('id') = 'abc123';
+ 		
+ 		일반태그인 경우..
+ 		document.getElementById('demo').innerHTML 
+ 		
+ 		일반태그
+ 		JavaScript			JQuery
+ 		value				val()
+ 		innerHTML			html()
+ 							text() 
+ 							
+ 		
+ */
+ </script>
+ 
+ <p>여기가 p 태그입니다.</p>
+ 
+ <script type="text/javascript">
+ 
+$(document).ready(function(){
+	//alert('document ready'); //실행이 안된다.	아직 jQuery를 추가 안했기 때문에
+	
+	/*
+	let ptag = $("p").html(); //getter == innerHTML
+	// alert(ptag); //ptag에 있는 문자열이 출력된다.
+	
+	$("p").html("hello <b>p</b> tag"); //setter "hello <b>p</b> tag"문자열을 ptag에 넣어라
+	*/
+	
+	//let ptag = $("p").text();
+	//alert(ptag);
+	
+	//$("p").text("hello <b>p</b> tag"); // 이건 text로 취급
+}); 
+//	문서를 전부 다 읽고 실행해라 라는 뜻.. 
+//	html 문서는 정적이다
+</script>
+
+<p id='demo'>p tag id=demo</p>
+<h3 class="cls">h3 tag class=cls</h3>
+<p class="cls">p tag class=cls</p>
+
+<script type="text/javascript">
+$(document).ready(function () {
+	let demo = $('#demo').html; // text()와 비슷
+//	alert(demo);
+	
+	$("#demo").text("hello p tag demo");
+	//id
+	
+	$(".cls").text("this element class = cls")
+	//class
+	
+	//jquery tag
+	$("p").text("p 태그입니다");
+	
+	//java script
+	let arrP = document.getElementsByTagName('p');
+	for(let i=0; i < arrP.length; i++){
+		arrP[i].innerHTML = "Java Script로 변경한 p 태그입니다";
+	}
+	
+	//만약 p태그의 cls를 수정하고 싶은 경우
+	$("p.cls").text("p tag class cls");
+});
+</script>
+</body>
+</html>

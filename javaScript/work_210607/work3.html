@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<h1>문제</h1>
+사나이들의 영화인 탑건은 군인 영화입니다.
+그러면 육군,해군,공군 중 어느군의 영화일까요?
+<br><br>
+
+<button type = "button" onclick="answer()">답을 봅시다</button>
+※버튼을 한 번 클릭하면 힌트가 표시됩니다.<br>
+※버튼을 두 번 클릭하면 답이 표시됩니다.<br>
+
+<script type="text/javascript">
+let n = 0;
+function answer() {
+	if(n==0){
+		alert("[힌트]바다에서 싸우는 군인입니다.");
+		n = 1;
+	}else{
+		alert("[정답]해군입니다.")
+	}
+}
+</script>
+</body>
+
+</html>

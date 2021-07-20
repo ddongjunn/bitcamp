@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<table id='mytable' border="1">
+	<tr>
+		<th>번호</th><th>제목(title)</th><th>저자(author)</th><th>가격(price)</th>
+	</tr>
+</table>
+
+<script type="text/javascript">
+
+let xhttp = new XMLHttpRequest();
+
+xhttp.onreadystatechange = function (){
+	if(this.readyState == 4 && this.status == 200){
+		//alert(this.responseXML);
+		xmlFunc(this);
+	}
+}
+xhttp.open("GET","book.xml",true);
+xhttp.send();
+
+function xmlFunc( xml ) {
+	let title, author, price;
+	let titleTxt, authorTxt, priceTxt, xmlDoc;
+	
+	titleTxt = authorTxt = ''; //초기화
+	
+	xmlDoc = xml.responseXML;
+	
+	title = xmlDoc.getElementsByTagName('title');
+	author = xmlDoc.getElementsByTagName('author');
+	price = xmlDoc.getElementsByTagName('price');
+	
+	alert(title[1].childNodes[0].nodeValue);
+	
+	let table = document.getElementById('mytable');
+	for(let i=0; i < title.length; i++){
+		let tr = document.createElement('tr');
+		
+		let th = document.createElement('th');
+		th.appendChild(document.createTextNode(i+1));
+		
+		let td1 = document.createElement('td');
+		td1.appendChild(document.createTextNode(title[i].childNodes[0].nodeValue));
+		
+		let td2 = document.createElement('td');
+		td2.appendChild(document.createTextNode(author[i].childNodes[0].nodeValue));
+		
+		let td3 = document.createElement('td');
+		td3.appendChild(document.createTextNode(price[i].childNodes[0].nodeValue));
+		
+		tr.appendChild(th);
+		tr.appendChild(td1);
+		tr.appendChild(td2);
+		tr.appendChild(td3);
+		
+		table.appendChild(tr);	
+	}	
+}
+
+</script>
+</body>
+</html>
