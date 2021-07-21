@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>회원가입</title>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <th colspan="2">회원가입</th>
+    </tr>
+    <tr>
+        <th>아이디</th>
+        <td><input type="text" size="20" id="id">
+            <p id="idResult" ><b></b></p>
+        </td>
+    </tr>
+    <tr>
+        <th>비밀번호</th>
+        <td><input type="text" size="20" id="pwd" required></td>
+    </tr>
+    <tr>
+        <th>이름</th>
+        <td><input type="text" size="20" id="name"></td>
+    </tr>
+    <tr>
+        <th>이메일</th>
+        <td><input type="text" size="20" id="email"></td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">
+            <input type="button" value="회원가입" id="regiBtn">
+            <input type="button" value="뒤로가기" id="backBtn">
+        </td>
+
+    </tr>
+</table>
+<script type="text/javascript">
+    $('#backBtn').click(function () {
+       location.href='login.html';
+    });
+
+    $('#id').blur(function () {
+        $.ajax({
+            url : "http://localhost:3000/idCheck",
+            type : "post",
+            data : { id : $('#id').val() },
+            success : function (data){
+                if( data == false && $('#id').val() != "" ){
+                    $('#idResult').css({'color':'blue', 'font-size':'10px', 'font':'bold'});
+                    $('#idResult').text('사용가능');
+                    return;
+                }
+                $('#idResult').css({'color':'red', 'font-size':'10px', 'font':'bold'});
+                $('#idResult').text('사용불가능');
+                $('#id').val("");
+            },
+            error : function () {
+                alert('error');
+            }
+        })
+    });
+
+    $('#regiBtn').click(function () {
+        $.ajax({
+            url : "http://localhost:3000/regi",
+            type : "post",
+            data : {
+                id : $('#id').val(),
+                pwd : $('#pwd').val(),
+                name : $('#name').val(),
+                email : $('#email').val()
+            },
+            success : function (data){
+                if(data == true){
+                    alert('회원가입완료');
+                    location.href = 'login.html';
+                    return;
+                }
+                alert('회원가입실패');
+            },
+            error : function () {
+                alert('error');
+            }
+        })
+    });
+</script>
+
+
+</body>
+</html>

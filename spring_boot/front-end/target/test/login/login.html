@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>login</title>
+</head>
+<body>
+
+<table border="1">
+    <tr>
+        <th colspan="2">로그인</th>
+    </tr>
+    <tr>
+        <th>아이디</th>
+        <td><input type="text" size="20" id="id"></td>
+    </tr>
+    <tr>
+        <th>비밀번호</th>
+        <td><input type="text" size="20" id="pwd"></td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">
+            <input type="button" value="로그인" id="loginBtn">
+            <input type="button" value="회원가입" id="regiBtn">
+        </td>
+
+    </tr>
+</table>
+
+<script type="text/javascript">
+    $('#loginBtn').click(function () {
+        $.ajax({
+            url : "http://localhost:3000/login",
+            type : "post",
+            data : { id : $('#id').val(), pwd : $('#pwd').val() },
+            success : function (data){
+                if(data == true){
+                    alert('로그인성공');
+
+                    sessionStorage.setItem( 'loginId', $('#id').val() );
+
+                    location.href = '../bbs/bbs.html';
+                    return;
+                }
+                alert('id 또는 pwd 확인');
+                $('#id').val("");
+                $('#pwd').val("");
+            },
+            error : function () {
+                alert('error');
+            }
+        })
+    });
+
+    $('#regiBtn').click(function () {
+       location.href = 'regi.html';
+    });
+</script>
+</body>
+</html>
