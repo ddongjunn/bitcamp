@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+
+<h3>upload file</h3>
+
+<form id="upload_file_frm">
+	<input type="file" id="_uploadFile" name="uploadFile" accept="*">
+	<button type="button" id="uploadFileBtn">파일 업로드</button>
+	<p id="uploadResult"></p>
+</form>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#uploadFileBtn").click(function() {
+		$.ajax({
+			url : "http://localhost:3000/fileUpload",
+			type : "post",
+			data : new FormData( $('#upload_file_frm')[0] ), //ForData()찾아보기
+			enctype : 'multipart/form-data',
+			processData : false, //처리데이터
+			contentType : false,
+			cache : false, 
+			//세션, 쿠키, 캐시.. === 
+			//목적은 저장? 세션:톰캣서버저장(많으면 서버가 무거워진다), 쿠키:브라우저에 저장, 캐시: 임시저장공간?
+			success : function( data ) {
+				alert('success');
+				alert(data);
+				$('#uploadResult').text();
+			},
+			error : function() {
+				alert('error');
+			}
+		});
+	});
+});
+</script>
+
+<h3>download file</h3>
+	<button type="button" id="downloadBtn">파일 다운로드</button>
+</body>
+
+<script type="text/javascript">
+$('#downloadBtn').click(function() {
+	location.href = "http://localhost:3000/fileDownload?fileName=" + "11.JPG";
+});
+
+/* $('#downloadBtn').click(function() {
+	$.ajax({
+		url : "http://localhost:3000/fileDownload",
+		type : "get",
+		data : {fileName:""},
+		success : function(){
+			alert('success');
+		},
+		error : function() {
+			alert('error');	
+		}
+	})
+}); */
+//이렇게 하면 안된다!
+
+</script>
+</body>
+</html>
