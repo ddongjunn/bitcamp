@@ -48,11 +48,11 @@
             data : { id : $('#id').val() },
             success : function (data){
                 if( data == false && $('#id').val() != "" ){
-                    $('#idResult').css({'color':'blue', 'font-size':'10px', 'font':'bold'});
+                    $('#idResult').css({'color':'blue', 'font-size':'10px', 'font-weight':'bold'});
                     $('#idResult').text('사용가능');
                     return;
                 }
-                $('#idResult').css({'color':'red', 'font-size':'10px', 'font':'bold'});
+                $('#idResult').css({'color':'red', 'font-size':'10px', 'font-weight':'bold'});
                 $('#idResult').text('사용불가능');
                 $('#id').val("");
             },

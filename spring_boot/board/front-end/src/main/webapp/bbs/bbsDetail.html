@@ -29,7 +29,7 @@
     </tr>
 </table>
 <div id="writerBtn">
-
+<input type="button" value="뒤로가기" onclick="location.href='bbs.html'">
 </div>
 
 </body>
@@ -61,5 +61,25 @@ $(document).ready(function () {
         $('#writerBtn').append('<input type="button" id="updateBtn" value="수정">');
         $('#writerBtn').append('<input type="button" id="deleteBtn" value="삭제">');
     }
+
+    $('#updateBtn').click(function () {
+        location.href = 'bbsUpdate.html?seq=' + seq;
+    });
+
+    $('#deleteBtn').click(function () {
+        $.ajax({
+            url : 'http://localhost:3000/bbs-delete',
+            type : 'get',
+            data : {seq : seq},
+            success : function () {
+                alert('해당 게시물이 삭제되었습니다.');
+                location.href = 'bbs.html';
+            },
+            error : function () {
+
+            }
+        });
+    });
+
 });
 </script>

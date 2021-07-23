@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form id="frm">
+    <table border="1">
+        <tr>
+            <th>작성자</th>
+            <td><input type="text" size="38" name="id" id="id" value="" readonly></td>
+        </tr>
+        <tr>
+            <th>제목</th>
+            <td><input type="text" size="38" name="title"></td>
+        </tr>
+        <tr>
+            <th>내용</th>
+            <td><textarea rows="20" cols="40" name="content"></textarea></td>
+        </tr>
+    </table>
+</form>
+<div>
+    <input type="button" id="writeBtn" value="글쓰기">
+    <input type="button" id="backBtn" value="뒤로가기">
+</div>
+<script type="text/javascript">
+    let loginId = sessionStorage.getItem('loginId');
+
+    $(document).ready(function () {
+        $('#id').val(loginId);
+    });
+
+    $('#writeBtn').click(function () {
+        let params = $('#frm').serialize();
+
+        $.ajax({
+            url : 'http://localhost:3000/bbs-write',
+            type : 'post',
+            data : params,
+            success : function ( data ) {
+                if(data){
+                    alert('글 작성 완료');
+                    location.href = 'bbs.html';
+                    return;
+                }
+            },
+            error : function () {
+                alert('success');
+            }
+        });
+
+    });
+
+    $('#backBtn').click(function () {
+        location.href = 'bbs.html';
+    });
+
+
+</script>
+</body>
+</html>

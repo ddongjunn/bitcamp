@@ -5,10 +5,87 @@
  
  <mapper namespace="bit.com.a.dao.BbsDao">
  	<select id="getAllBbsList" resultType="bit.com.a.dto.BbsDto"> 
- 		SELECT * FROM BBS
+ 		SELECT * FROM BBS ORDER BY WDATE DESC
  	</select>
  	
- 	<select id="getBbs" parameterType="_int"  resultType="bit.com.a.dto.BbsDto">
+ 	<select id="getBbs" parameterType="int"  resultType="bit.com.a.dto.BbsDto">
  		SELECT * FROM BBS WHERE SEQ = #{seq}
  	</select>
+ 	
+ 	<insert id="writeBbs" parameterType="bit.com.a.dto.BbsDto">
+ 		INSERT INTO BBS (SEQ, ID, REF, STEP, DEPTH, TITLE, CONTENT, WDATE, DEL, READCOUNT) 
+		VALUES (SEQ_BBS.nextval, #{id}, (SELECT NVL(MAX(REF),0) + 1 FROM BBS), 0, 0, #{title}, #{content}, SYSDATE, 0, 0)
+ 	</insert>
+ 	
+ 	<update id="deleteBbs" parameterType="int">
+ 		UPDATE BBS SET DEL = 1 WHERE SEQ = #{seq}
+ 	</update>
+ 	
+ 	<update id="updateBbs" parameterType="bit.com.a.dto.BbsDto">
+ 		UPDATE BBS SET TITLE = #{title}, CONTENT = #{content} 
+ 		WHERE SEQ = #{seq} 
+ 	</update>
+ 	
+ 	<select id="countBbs" parameterType="bit.com.a.dto.BbsParam" resultType="int">
+ 		SELECT NVL(count(*), 0) FROM BBS WHERE 1=1
+ 		<if test="choice != null and choice != '' and search != null and search != ''">
+ 			<if test="choice == 'title'">AND TITLE LIKE '%'||#{search}||'%'</if>
+ 			<if test="choice == 'content'">AND CONTENT LIKE '%'||#{search}||'%' </if>
+			<if test="choice == 'writer'">AND ID=#{search} </if>
+ 		</if>
+ 	</select>
+ 	
+ 	<!-- <select id="getBbsList" parameterType="bit.com.a.dto.BbsParam" resultType="bit.com.a.dto.BbsDto">
+ 		SELECT SEQ, ID, 
+ 		REF, STEP, DEPTH, 
+ 		TITLE, CONTENT, WDATE, DEL, READCOUNT
+ 		FROM 
+ 		(SELECT ROW_NUMBER()OVER(ORDER BY REF DESC, STEP ASC) AS RNUM,
+ 				SEQ, ID, 
+ 				REF, STEP, DEPTH, 
+ 				TITLE, CONTENT, WDATE, DEL, READCOUNT
+ 				FROM BBS 
+ 				WHERE 1=1
+ 			<if test="choice != null and choice != '' and search != null and search != ''">
+ 				
+ 				<if test="choice == 'title'">
+ 					AND TITLE LIKE '%'||#{search}||'%'
+ 				</if>
+ 				<if test="choice == 'content'">
+ 					AND CONTENT LIKE '%'||#{search}||'%' 
+ 				</if>
+				<if test="choice == 'writer'">
+					AND ID = #{search} 
+				</if>
+ 			</if>
+ 				ORDER BY REF DESC, STEP ASC)
+ 				WHERE RNUM BETWEEN #{start} AND #{end}
+ 	</select> -->
+ 	
+ 	<select id="getBbsList" parameterType="bit.com.a.dto.BbsParam" resultType="bit.com.a.dto.BbsDto">
+		SELECT SEQ, ID,
+		REF, STEP, DEPTH,
+		TITLE, CONTENT, WDATE, DEL, READCOUNT
+		FROM
+		(SELECT ROW_NUMBER()OVER(ORDER BY REF DESC, STEP ASC) AS RNUM,
+		SEQ, ID,
+		REF, STEP, DEPTH,
+		TITLE, CONTENT, WDATE, DEL, READCOUNT
+		FROM BBS
+		WHERE 1=1
+		<if test="choice != null and choice != '' and search != null and search != ''">
+			<if test="choice == 'title'">
+				AND TITLE LIKE '%'||#{search}||'%'
+			</if>
+			<if test="choice == 'content'">
+				AND CONTENT LIKE '%'||#{search}||'%'
+			</if>
+			<if test="choice == 'writer'">
+				AND ID=#{search}
+			</if>
+		</if>
+		ORDER BY REF DESC, STEP ASC)
+		WHERE RNUM BETWEEN #{start} AND #{end}
+	</select>
+ 	
  </mapper>

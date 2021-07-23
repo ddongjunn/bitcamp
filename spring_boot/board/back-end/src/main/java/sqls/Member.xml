@@ -8,13 +8,13 @@
  		SELECT * FROM MEMBER
  	</select>
  	
- 	<select id="login" parameterType="bit.com.a.dto.MemberDto" resultType="_boolean">
+ 	<select id="login" parameterType="bit.com.a.dto.MemberDto" resultType="boolean">
  		SELECT count(*) 
  		FROM MEMBER 
  		WHERE ID = #{id} AND PWD = #{pwd}
  	</select>
  	
- 	<select id="idCheck" parameterType="string" resultType="_boolean">
+ 	<select id="idCheck" parameterType="string" resultType="boolean">
  		SELECT count(*) 
  		FROM MEMBER 
  		WHERE ID = #{id}

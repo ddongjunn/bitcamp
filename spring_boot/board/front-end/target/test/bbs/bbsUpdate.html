@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form id="frm">
+    <table border="1">
+        <tr>
+            <th>작성자</th>
+            <td><input type="text" size="38" name="id" id="id" readonly></td>
+        </tr>
+        <tr>
+            <th>제목</th>
+            <td><input type="text" size="38" name="title" id="title"></td>
+        </tr>
+        <tr>
+            <th>내용</th>
+            <td><textarea rows="20" cols="40" name="content" id="content"></textarea></td>
+        </tr>
+    </table>
+    <input type="hidden" name="seq" id="seq">
+</form>
+<div>
+    <input type="button" id="updateBtn" value="수정하기">
+    <input type="button" id="backBtn" value="뒤로가기">
+</div>
+
+<script type="text/javascript">
+    const urlSearch = new URLSearchParams(location.search);
+    let seq = urlSearch.get('seq');
+    $('#seq').val(seq);
+
+    $(document).ready(function () {
+        $.ajax({
+            url : "http://localhost:3000/bbs-detail",
+            type : "get",
+            data : {seq : seq},
+            success : function ( data ) {
+                $('#id').val(data.id);
+                $('#title').val(data.title);
+                $('#content').append(data.content);
+            },
+            error : function ( ) {
+                alert('data');
+            }
+        });
+    });
+
+    $('#updateBtn').click(function () {
+        let params = $('#frm').serialize();
+        $.ajax({
+            url : "http://localhost:3000/bbs-update",
+            type : "get",
+            data : params,
+            success : function () {
+                alert('수정완료');
+                location.href = "bbsDetail.html?seq=" + seq +"&id=" + $('#id').val();
+            },
+            error : function () {
+                
+            }
+        })
+    });
+
+    $('#backBtn').click(function () {
+       location.href = 'bbs.html';
+    });
+
+
+</script>
+</body>
+</html>
